@@ -1,0 +1,161 @@
+<div class="col-12 p-t-50" ng-if="userName == null || userName == undefined">
+    <form name="usernameForm">
+        <div class="card col-md-6 offset-md-3">
+            <div class="card-body">
+                <h5 class="card-title text-center"> Welcome to Demo!</h5>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="userName"
+                                   placeholder="Enter your name" ng-model="demo.userName" required
+                                   minlength="3" maxlength="10">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-outline-primary float-right" ng-click="logIn()">
+                            Let's Go
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div ng-if="userName != null || userName != undefined">
+    <nav class="navbar-light bg-light">
+        <div class="col">
+            <div class="row">
+                <div class="col-6">
+                    <span class="navbar-brand bg-primary brand-logo">Demo</span>
+                </div>
+                <div class="col-5 p-r-0" ng-if="userName != null || userName != undefined">
+                    <h6 class="navbar-right-item"><i class="fa fa-user p-r-5" aria-hidden="true"></i>{{userName}}</h6>
+                </div>
+                <div class="col-1 text-right" ng-if="userName != null || userName != undefined">
+                    <i class="fa fa-sign-out-alt signout-icon cursor-pointer" aria-hidden="true"
+                       ng-click="logout()"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="col-12">
+
+        <div class="row">
+            <div class="col-12 m-b-10 m-t-10">
+                <h5 class="text-center bg-secondary title">Appointments for {{today | date: 'dd/M/yyyy'}}</h5>
+            </div>
+        </div>
+
+        <div ng-if="toggle">
+            <form name="appointmentForm">
+                <div class="card col-md-6 offset-md-3">
+                    <div class="card-body">
+                        <h5 class="card-title text-center"><i class="fa fa-clock p-r-5" aria-hidden="true"></i>{{selectedData.timeSpan}}
+                        </h5>
+                        <hr>
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="firstName">First name</label>
+                                    <input type="text" class="form-control" id="firstName"
+                                           placeholder="Enter First name" ng-model="selectedData.firstName" required
+                                           minlength="3">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="lastName">Last name</label>
+                                    <input type="text" class="form-control" id="lastName"
+                                           placeholder="Enter Last name" ng-model="selectedData.lastName" required
+                                           minlength="3">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="contactNo">Contact number</label>
+                                    <input type="text" class="form-control" id="contactNo" pattern="[0-9]{10}"
+                                           minlength="10"
+                                           maxlength="10"
+                                           placeholder="Enter Contact number" ng-model="selectedData.contactNo"
+                                           required>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-outline-primary float-right"
+                                        ng-click="appointment(true)">
+                                    <span ng-if="selectedData.available">Save</span>
+                                    <span ng-if="!selectedData.available">Update</span>
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary float-right m-r-10"
+                                        ng-click="appointment(false)">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div ng-if="!toggle">
+            <div class="row">
+                <div class="col-sm-4 col-md-3" ng-repeat="i in dataArray track by $index">
+
+                    <div class="card m-b-15">
+                        <div class="card-body p-15" ng-class="{'red-card': !i.available}">
+
+                            <!-- Directive -->
+                            <appointment-card-title heading="i.timeSpan"
+                                                    available="i.available"></appointment-card-title>
+
+                            <div class="col-12">
+                                <button class="btn btn-block btn-outline-primary" ng-if="i.available"
+                                        ng-click="appointmentEvent($index)">
+                                    <i class="fa fa-plus p-r-5" aria-hidden="true"></i>Add
+                                </button>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-block btn-outline-light" ng-if="!i.available"
+                                        ng-click="appointmentEvent($index)">
+                                    <i class="fa fa-eye p-r-5" aria-hidden="true"></i>View
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!--
+
+<div ng-if="!toggle">
+            <div class="row">
+                <div class="col-sm-4 col-md-3" ng-repeat="i in dataArray track by $index">
+                    <div class="card m-b-15">
+                        <div class="card-body p-15" ng-class="{'red-card': !i.available}">
+                            <h5 class="card-title text-center"><i class="fa fa-clock p-r-5" aria-hidden="true"></i>{{i.timeSpan}}
+                            </h5>
+                            <hr ng-class="{'bg-white': !i.available}">
+                            <div class="col-12">
+                                <button class="btn btn-block btn-outline-primary" ng-if="i.available"
+                                        ng-click="appointmentEvent($index)">
+                                    <i class="fa fa-plus p-r-5" aria-hidden="true"></i>Add
+                                </button>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-block btn-outline-light" ng-if="!i.available"
+                                        ng-click="appointmentEvent($index)">
+                                    <i class="fa fa-eye p-r-5" aria-hidden="true"></i>View
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+-->

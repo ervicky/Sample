@@ -1,0 +1,58 @@
+[
+  {
+    "timeSpan": "9am - 10am",
+    "available": false,
+    "firstName": "Vivek",
+    "lastName": "Patel",
+    "contactNo": 9426699999
+  },
+  {
+    "timeSpan": "10am - 11am",
+    "available": true,
+    "firstName": null,
+    "lastName": null,
+    "contactNo": null
+  },
+  {
+    "timeSpan": "11am - 12pm",
+    "available": true,
+    "firstName": null,
+    "lastName": null,
+    "contactNo": null
+  },
+  {
+    "timeSpan": "12pm - 1pm",
+    "available": true,
+    "firstName": null,
+    "lastName": null,
+    "contactNo": null
+  },
+  {
+    "timeSpan": "1pm - 2pm",
+    "available": true,
+    "firstName": null,
+    "lastName": null,
+    "contactNo": null
+  },
+  {
+    "timeSpan": "2pm - 3pm",
+    "available": false,
+    "firstName": "Ravi",
+    "lastName": "Patel",
+    "contactNo": 942664555555
+  },
+  {
+    "timeSpan": "3pm - 4pm",
+    "available": true,
+    "firstName": null,
+    "lastName": null,
+    "contactNo": null
+  },
+  {
+    "timeSpan": "4pm - 5pm",
+    "available": true,
+    "firstName": null,
+    "lastName": null,
+    "contactNo": null
+  }
+]
